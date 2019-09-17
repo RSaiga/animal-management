@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
+  <!--<link rel="apple-touch-icon-precomposed" href="../static/img/webclip.png" th:href="@{/img/webclip.png}"/>-->
+  <!--<link rel="icon" href="../static/img/favicon.ico" th:href="@{/img/favicon.ico}"/>-->
+  <title>animal-management</title>
+  <!-- Bootstrap core CSS -->
+  <link href="../static/node_modules/bootstrap/dist/css/bootstrap.min.css"
+        th:href="@{/node_modules/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet"/>
+  <link href="../static/node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css"
+        th:href="@{/node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css}" rel="stylesheet"/>
+  <!-- Custom styles for this template -->
+  <link href="../static/css/register.css" th:href="@{/css/register.css}" rel="stylesheet"/>
+</head>
+<body>
+<nav class="navbar navbar-dark justify-content-between border-bottom">
+  <a class="navbar-brand text-light">どうぶつ登録</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a id="home" class="nav-link text-light" th:href="@{/animals}" href="list.html">一覧</a>
+      </li>
+      <li class="nav-item">
+        <a id="history" class="nav-link text-muted" href="#">登録</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container pt-5">
+  <div class="row">
+    <div class="col-3">
+    </div>
+    <div class="col-6">
+      <form th:action="@{/animal/register}" method="post" th:object="${animal}">
+        <div class="form-group mb-4">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-secondary text-light">&nbsp;　名前　&nbsp;</span>
+            </div>
+            <input type="text" class="form-control" th:field="*{name}" placeholder="名前">
+          </div>
+        </div>
+
+        <div class="form-group mb-4">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-secondary text-light">&nbsp;　種別　&nbsp;</span>
+            </div>
+            <select class="custom-select" th:field="*{type}">
+              <option th:each="animal : ${animals}" th:value="${animal}" th:text="${animal.value}"></option>
+            </select>
+
+          </div>
+        </div>
+        <div class="form-group mb-4">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-secondary text-light">誕生日</span>
+            </div>
+            <input type="text" class="form-control" id="date_cal" th:field="*{birthDay}" placeholder="2019/01/01" readonly>
+          </div>
+        </div>
+        <div class="form-group mb-4">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-secondary text-light">&nbsp;　性別　&nbsp;</span>
+            </div>
+            <select class="custom-select" th:field="*{gender}">
+              <option th:each="gender : ${genders}" th:value="${gender}" th:text="${gender.value}"></option>
+            </select>
+          </div>
+        </div>
+        <div id="errMsg" class="error_message" th:text="${errorMsg}"></div>
+        <button class="btn btn-outline-info btn-block">
+          登録
+        </button>
+      </form>
+    </div>
+    <div class="col-3">
+    </div>
+  </div>
+</div>
+
+<div id="loading" class="modal fade bd-example-modal-lg text-light" data-backdrop="static" data-keyboard="false"
+     tabindex="-1">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content" style="width: 48px">
+      <span class="fas fa-spinner fa-pulse fa-3x"></span>
+    </div>
+  </div>
+</div>
+
+<div id="notice" class="modal fade bd-example-modal-lg text-light" data-backdrop="static" data-keyboard="false"
+     tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <span class="text-light">総集計計算時、みなし稼働係数は対象外となります。</span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="../static/node_modules/jquery/dist/jquery.min.js"
+        th:src="@{/node_modules/jquery/dist/jquery.min.js}" charset="UTF-8"></script>
+<script type="text/javascript" src="../static/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+        th:src="@{/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js}" charset="UTF-8"></script>
+<script type="text/javascript" src="../static/node_modules/bootstrap/dist/js/bootstrap.min.js"
+        th:src="@{/node_modules/bootstrap/dist/js/bootstrap.min.js}" charset="UTF-8"></script>
+<script type="text/javascript" src="../static/node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"
+        th:src="@{/node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js}" charset="UTF-8"></script>
+<script type="text/javascript" src="../static/node_modules/bootstrap-datepicker/dist/locales/bootstrap-datepicker.ja.min.js"
+        th:src="@{/node_modules/bootstrap-datepicker/dist/locales/bootstrap-datepicker.ja.min.js}" charset="UTF-8"></script>
+<script type="text/javascript" src="../static/js/register.js" th:src="@{/js/register.js}" charset="UTF-8"></script>
+</body>
+</html>

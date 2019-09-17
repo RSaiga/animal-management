@@ -1,0 +1,23 @@
+:root {
+  --input-padding-x: .75rem;
+  --input-padding-y: .75rem;
+}
+
+body {
+  height: 100%;
+  background-color: black;
+}
+
+.dashboard {
+  text-align:center;
+  margin-top: 100px;
+}
+
+.bg-black {
+  background-color: black;
+}
+
+p a, p a:hover{
+  color: red;
+  text-decoration: none;
+}

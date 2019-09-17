@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
+  <!--<link rel="apple-touch-icon-precomposed" href="../static/img/webclip.png" th:href="@{/img/webclip.png}"/>-->
+  <!--<link rel="icon" href="../static/img/favicon.ico" th:href="@{/img/favicon.ico}"/>-->
+  <title>animal-management</title>
+  <!-- Bootstrap core CSS -->
+  <link type="text/css" href="../static/node_modules/bootstrap/dist/css/bootstrap.min.css"
+        th:href="@{/node_modules/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet"/>
+  <!-- Custom styles for this template -->
+  <link type="text/css" href="../static/css/dashboard.css" th:href="@{/css/dashboard.css}" rel="stylesheet"/>
+</head>
+<body class="h-100">
+<div class="dashboard">
+  <h1 class="text-white">どうぶつえん</h1>
+
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item bg-black">
+      <a class="text-info lead" th:href="@{/animals}" href="list.html">どうぶつ一覧</a>
+    </li>
+    <li class="list-group-item bg-black">
+      <a class="text-info lead" th:href="@{/animal}" href="register.html">どうぶつ登録</a>
+    </li>
+  </ul>
+</div>
+
+<script src="../static/node_modules/jquery/dist/jquery.min.js"
+        th:src="@{/node_modules/jquery/dist/jquery.min.js}" charset="UTF-8"></script>
+<script src="../static/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+        th:src="@{/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js}" charset="UTF-8"></script>
+<script src="../static/node_modules/bootstrap/dist/js/bootstrap.min.js"
+        th:src="@{/node_modules/bootstrap/dist/js/bootstrap.min.js}" charset="UTF-8"></script>
+</body>
+</html>
