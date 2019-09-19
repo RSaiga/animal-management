@@ -4,6 +4,8 @@ import com.lib.training.domain.type.Entity;
 
 public class Animal extends Entity {
 
+  private Age duration;
+
   private Name name;
 
   private AnimalType type;
@@ -16,15 +18,16 @@ public class Animal extends Entity {
   }
 
   public Animal(String name, String type, String birthDay, String gender) {
+    this.duration= new Age(birthDay);
     this.name = new Name(name);
     this.type = AnimalType.of(Integer.parseInt(type));
     this.birthDay = new BirthDay(birthDay);
     this.gender = GenderType.of(gender);
   }
 
-  public Name getName() {
-    return name;
-  }
+  public Age getAge() { return duration; }
+
+  public Name getName() { return name; }
 
   public AnimalType getType() {
     return type;
