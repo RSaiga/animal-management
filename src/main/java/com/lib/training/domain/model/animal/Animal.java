@@ -14,6 +14,8 @@ public class Animal extends Entity {
 
   private GenderType gender;
 
+  private FeedingFee feedingFee;
+
   public Animal() {
   }
 
@@ -40,4 +42,6 @@ public class Animal extends Entity {
   public GenderType getGender() {
     return gender;
   }
+
+  public FeedingFee getFeedingFee() { return feedingFee; }
 }
