@@ -46,6 +46,7 @@
       <th scope="col">誕生日</th>
       <th scope="col">年齢</th>
       <th scope="col">性別</th>
+      <th scope="col">餌代</th>
     </tr>
     </thead>
     <tbody>
@@ -56,6 +57,7 @@
       <td th:text="${animal.birthDay.value()}"></td>
       <td th:text="${animal.birthDay.age().value()}"></td>
       <td th:text="${animal.gender.value}"></td>
+      <td th:text="${animal.feedingFee.value()}"></td>
     </tr>
     </tbody>
   </table>

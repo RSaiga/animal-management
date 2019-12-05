@@ -24,7 +24,8 @@ public class RegsterController {
           "name",
           "type",
           "birthDay",
-          "gender"
+          "gender",
+          "feedingFee"
       };
 
   @InitBinder

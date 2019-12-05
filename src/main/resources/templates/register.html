@@ -79,6 +79,14 @@
             </select>
           </div>
         </div>
+        <div class="form-group mb-4">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-secondary text-light">&nbsp;　餌代　&nbsp;</span>
+            </div>
+            <input type="text" class="form-control" th:field="*{feedingFee}" placeholder="餌代（日本円）">
+          </div>
+        </div>
         <div id="errMsg" class="error_message" th:text="${errorMsg}"></div>
         <button class="btn btn-outline-info btn-block">
           登録
