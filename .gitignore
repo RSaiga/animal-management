@@ -3,7 +3,6 @@ node_modules/
 logs/
 build/
 .gradle/
-gradle/
 
 ### STS ###
 .apt_generated
