@@ -3,6 +3,7 @@ package com.lib.training.application.service.animal;
 import com.lib.training.application.repository.animal.AnimalRepository;
 import com.lib.training.domain.model.animal.Animal;
 import com.lib.training.domain.model.animal.Animals;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -10,7 +11,7 @@ public class AnimalService {
 
   private AnimalRepository repository;
 
-  public AnimalService(AnimalRepository repository) {
+  public AnimalService(@Qualifier("animalRepositoryDataSource") AnimalRepository repository) {
     this.repository = repository;
   }
 

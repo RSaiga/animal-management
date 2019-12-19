@@ -1,7 +1,10 @@
 package com.lib.training.domain.model.animal;
 
+import org.seasar.doma.Domain;
+
 import java.util.stream.Stream;
 
+@Domain(valueType = Integer.class, factoryMethod="of", accessorMethod = "getKey")
 public enum AnimalType {
   Lion(0, "らいおん"),
   Giraffe(1, "きりん"),
@@ -17,7 +20,7 @@ public enum AnimalType {
     this.value = value;
   }
 
-  public int getKey() {
+  public Integer getKey() {
     return key;
   }
 

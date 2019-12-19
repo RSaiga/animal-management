@@ -12,7 +12,22 @@ spring:
     basic:
       enable: false
   datasource:
-    initialize: false
+#    initialize: false
+#    url: jdbc:postgresql://localhost:5432/fd?currentSchema=sample_db
+    url: jdbc:mysql://localhost:3306/sample_db
+    username: user
+    password: password
+#    driverClassName: org.postgresql.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    pool:
+      size: 10
+    spring:
+      sqlScriptEncoding: UTF-8
+
+doma:
+  dialect: MYSQL
+#  dialect: POSTGRES
+
 server:
   servlet:
     context-path: /animal-management

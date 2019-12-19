@@ -1,7 +1,10 @@
 package com.lib.training.domain.model.animal;
 
+import org.seasar.doma.Domain;
+
 import java.util.stream.Stream;
 
+@Domain(valueType = String.class, factoryMethod="of", accessorMethod = "getKey")
 public enum GenderType {
   Male("0", "オス"),
   Female("1", "メス");
