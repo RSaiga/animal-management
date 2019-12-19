@@ -20,7 +20,7 @@ $ docker-compose up -d
 
 #### mysql停止
 ```sh
-$ docker-compose dawn
+$ docker-compose down
 ```
 
 #### 参考

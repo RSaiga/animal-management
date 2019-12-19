@@ -5,8 +5,6 @@ services:
     image: mysql:5.7
     restart: always
     environment:
-      HTTP_PROXY: http://proxy.ynet.yanmar.co.jp:8080
-      HTTPS_PROXY: http://proxy.ynet.yanmar.co.jp:8080
       MYSQL_DATABASE: sample_db
       MYSQL_USER: user
       MYSQL_PASSWORD: password
