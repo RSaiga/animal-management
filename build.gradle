@@ -14,12 +14,20 @@ buildscript {
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'war'
-apply plugin: 'org.springframework.boot'
+plugins {
+    id 'org.springframework.boot' version '2.1.1.RELEASE'
+    id 'java'
+    id 'war'
+    id 'com.moowork.node' version '1.2.0'
+    id 'groovy'
+}
 apply plugin: 'io.spring.dependency-management'
-apply plugin: 'com.moowork.node'
-apply plugin: 'groovy'
+
+war {
+    archiveBaseName = "animal-management-web"
+    archiveFileName = "${archiveBaseName}.war"
+    version = ""
+}
 
 group = 'com.lib.training'
 //version = '0.0.1-SNAPSHOT'
@@ -27,8 +35,13 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
+// for Doma 2
+// JavaクラスとSQLファイルの出力先ディレクトリを同じにする
 processResources.destinationDir = compileJava.destinationDir
+// コンパイルより前にSQLファイルを出力先ディレクトリにコピーするために依存関係を逆転する
 compileJava.dependsOn processResources
+compileJava.options.compilerArgs = ['-Adoma.dao.subpackage=impl', '-Adoma.dao.suffix=Impl']
+
 def appVersion = '1.0.'
 def appTstamp = java.time.LocalDateTime.now().format(java.time.format.DateTimeFormatter.ofPattern('yyMMddHHmm'))
 ant.echo(message: 'echo version: ' + appVersion + appTstamp)
@@ -72,6 +85,11 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-hateoas'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.seasar.doma.boot:doma-spring-boot-starter:1.2.1'
+    implementation("org.seasar.doma:doma:2.24.0")
+    annotationProcessor("org.seasar.doma:doma:2.24.0")
+//    implementation 'org.postgresql:postgresql:42.1.4'
+    implementation 'mysql:mysql-connector-java'
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
