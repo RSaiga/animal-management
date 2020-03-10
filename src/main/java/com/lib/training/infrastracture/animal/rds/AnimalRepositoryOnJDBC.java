@@ -3,8 +3,10 @@ package com.lib.training.infrastracture.animal.rds;
 import com.lib.training.domain.model.animal.Animal;
 import com.lib.training.domain.model.animal.Animals;
 import org.seasar.doma.Dao;
+import org.seasar.doma.Delete;
 import org.seasar.doma.boot.ConfigAutowireable;
 import org.seasar.doma.jdbc.Config;
+import org.seasar.doma.jdbc.builder.DeleteBuilder;
 import org.seasar.doma.jdbc.builder.InsertBuilder;
 import org.seasar.doma.jdbc.builder.SelectBuilder;
 
@@ -49,5 +51,12 @@ public interface AnimalRepositoryOnJDBC {
     builder.param(String.class, "testuser01").sql(",");
     builder.param(LocalDateTime.class, LocalDateTime.now()).sql(")");
     builder.execute();
+  }
+
+  default int truncate() {
+    Config config = Config.get(this);
+    DeleteBuilder builder = DeleteBuilder.newInstance(config);
+    builder.sql("TRUNCATE TABLE animals");
+    return builder.execute();
   }
 }

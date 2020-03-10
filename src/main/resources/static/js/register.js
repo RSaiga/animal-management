@@ -1,6 +1,6 @@
 <!--初期ロード処理-->
 $(function(){
-  $('#date_cal').datepicker({
+  $('#birthday').datepicker({
       format: 'yyyy-mm-dd',
       language:'ja'
   });

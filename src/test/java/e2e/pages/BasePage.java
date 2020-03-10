@@ -1,6 +1,8 @@
 package e2e.pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.springframework.core.env.Environment;
 
@@ -20,11 +22,16 @@ public abstract class BasePage {
     return driver.getCurrentUrl();
   }
 
-  protected String getPort() {
+  String getPort() {
     return environment.getProperty("local.server.port");
   }
 
-  protected void goToPage(String url) {
+  void goToPage(String url) {
     driver.get("http://localhost:" + getPort() + url);
+  }
+
+  void removeReadOnly(WebElement element) {
+    ((JavascriptExecutor) driver).executeScript(
+        "arguments[0].removeAttribute('readonly','readonly')", element);
   }
 }

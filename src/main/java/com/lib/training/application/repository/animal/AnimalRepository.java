@@ -8,4 +8,6 @@ public interface AnimalRepository {
   Animals findAll();
 
   void register(Animal animal);
+
+  void clear();
 }
