@@ -1,7 +1,8 @@
 Feature: RegisterPage
+
   Scenario: どうぶつを登録する
     Given クリーニング
-    Given どうぶつ登録画面を表示する
+    And どうぶつ登録画面を表示する
     And なまえを入力する
     And 種別を入力する
     And 誕生日を入力する

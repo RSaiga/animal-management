@@ -6,7 +6,6 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import e2e.pages.ListPage;
 import e2e.pages.RegisterPage;
-import io.cucumber.java.en.Given;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import static org.junit.Assert.assertEquals;
@@ -25,7 +24,7 @@ public class RegisterSteps {
     this.listPage = listPage;
   }
 
-  @Given("どうぶつ登録画面を表示する")
+  @And("どうぶつ登録画面を表示する")
   public void どうぶつ登録画面を表示する() {
     registerPage.goToPage();
   }
