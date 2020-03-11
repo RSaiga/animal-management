@@ -46,7 +46,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text bg-secondary text-light">&nbsp;　名前　&nbsp;</span>
             </div>
-            <input type="text" class="form-control" th:field="*{name}" placeholder="名前">
+            <input id="name" type="text" class="form-control" th:field="*{name}" placeholder="名前">
           </div>
         </div>
 
@@ -55,7 +55,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text bg-secondary text-light">&nbsp;　種別　&nbsp;</span>
             </div>
-            <select class="custom-select" th:field="*{type}">
+            <select id="animal_type" class="custom-select" th:field="*{type}">
               <option th:each="animal : ${animals}" th:value="${animal}" th:text="${animal.value}"></option>
             </select>
 
@@ -66,7 +66,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text bg-secondary text-light">誕生日</span>
             </div>
-            <input type="text" class="form-control" id="date_cal" th:field="*{birthDay}" placeholder="2019/01/01" readonly>
+            <input type="text" class="form-control" id="birthday" th:field="*{birthDay}" placeholder="2019/01/01" readonly>
           </div>
         </div>
         <div class="form-group mb-4">
@@ -74,7 +74,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text bg-secondary text-light">&nbsp;　性別　&nbsp;</span>
             </div>
-            <select class="custom-select" th:field="*{gender}">
+            <select id="gender" class="custom-select" th:field="*{gender}">
               <option th:each="gender : ${genders}" th:value="${gender}" th:text="${gender.value}"></option>
             </select>
           </div>
@@ -84,11 +84,11 @@
             <div class="input-group-prepend">
               <span class="input-group-text bg-secondary text-light">&nbsp;　餌代　&nbsp;</span>
             </div>
-            <input type="text" class="form-control" th:field="*{feedingFee}" placeholder="餌代（日本円）">
+            <input id="feeding_fee" type="text" class="form-control" th:field="*{feedingFee}" placeholder="餌代（日本円）">
           </div>
         </div>
         <div id="errMsg" class="error_message" th:text="${errorMsg}"></div>
-        <button class="btn btn-outline-info btn-block">
+        <button id="register" class="btn btn-outline-info btn-block">
           登録
         </button>
       </form>

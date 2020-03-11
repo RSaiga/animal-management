@@ -23,6 +23,13 @@ $ docker-compose up -d
 $ docker-compose down
 ```
 
+#### cucumber
+```sh
+# mysqlは停止していること
+$ ./gradlew cucumber
+```
+
+
 #### 参考
 ##### doma2 spring2.x
 https://qiita.com/chan_kaku/items/6a6dee3b57b27eb6fbe2

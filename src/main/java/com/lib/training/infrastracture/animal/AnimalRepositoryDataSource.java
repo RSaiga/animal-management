@@ -24,4 +24,9 @@ public class AnimalRepositoryDataSource implements AnimalRepository {
   public void register(Animal animal) {
     dataAccess.insert(animal);
   }
+
+  @Override
+  public void clear() {
+    dataAccess.truncate();
+  }
 }

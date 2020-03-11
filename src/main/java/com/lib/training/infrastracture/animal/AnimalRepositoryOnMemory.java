@@ -22,4 +22,9 @@ public class AnimalRepositoryOnMemory implements AnimalRepository {
   public void register(Animal animal) {
     repository.add(animal);
   }
+
+  @Override
+  public void clear() {
+    repository.clear();
+  }
 }

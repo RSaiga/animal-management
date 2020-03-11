@@ -1,33 +1,13 @@
-buildscript {
-    ext {
-        springBootVersion = '2.1.1.RELEASE'
-    }
-    repositories {
-        mavenCentral()
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath "com.moowork.gradle:gradle-node-plugin:1.2.0"
-    }
-}
-
 plugins {
     id 'org.springframework.boot' version '2.1.1.RELEASE'
     id 'java'
     id 'war'
     id 'com.moowork.node' version '1.2.0'
-    id 'groovy'
+//    id 'groovy'
+    id 'com.avast.gradle.docker-compose' version '0.10.9'
 }
 apply plugin: 'io.spring.dependency-management'
-
-war {
-    archiveBaseName = "animal-management-web"
-    archiveFileName = "${archiveBaseName}.war"
-    version = ""
-}
+apply plugin: 'docker-compose'
 
 group = 'com.lib.training'
 //version = '0.0.1-SNAPSHOT'
@@ -81,19 +61,56 @@ repositories {
     mavenCentral()
 }
 
+task cucumber() {
+    dependsOn assemble, testClasses
+    doLast {
+        javaexec {
+            main = "io.cucumber.core.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = ['--plugin', 'pretty', '--glue', 'e2e', 'src/test/resources', '--tags', 'not @developing']
+        }
+    }
+}
+
+task cucumber_focus() {
+    dependsOn assemble, testClasses
+    doLast {
+        javaexec {
+            main = "io.cucumber.core.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = ['--plugin', 'pretty', '--glue', 'e2e', 'src/test/resources', '--tags', '@focus']
+        }
+    }
+}
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    implementation 'org.springframework.boot:spring-boot-starter-hateoas'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.seasar.doma.boot:doma-spring-boot-starter:1.2.1'
     implementation("org.seasar.doma:doma:2.24.0")
     annotationProcessor("org.seasar.doma:doma:2.24.0")
-//    implementation 'org.postgresql:postgresql:42.1.4'
     implementation 'mysql:mysql-connector-java'
-
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+    implementation 'org.springframework.boot:spring-boot-starter-tomcat'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.spockframework:spock-core:1.2-groovy-2.4'
-    testImplementation 'org.spockframework:spock-spring:1.2-groovy-2.4'
+    testImplementation 'junit:junit:4.12'
+//    testImplementation 'org.spockframework:spock-core:1.2-groovy-2.4'
+//    testImplementation 'org.spockframework:spock-spring:1.2-groovy-2.4'
+    testImplementation 'io.github.bonigarcia:webdrivermanager:3.7.1'
+    testImplementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
+    testImplementation 'io.cucumber:cucumber-java8:4.7.4'
+    testImplementation 'io.cucumber:cucumber-junit:4.7.4'
+    testImplementation 'io.cucumber:cucumber-spring:4.7.4'
+}
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+dockerCompose.isRequiredBy(cucumber)
+dockerCompose { 
+    useComposeFiles = ['docker/docker-compose.yml']
 }
