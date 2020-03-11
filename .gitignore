@@ -3,6 +3,10 @@ node_modules/
 logs/
 build/
 .gradle/
+/e2e/node_modules
+/e2e/cypress/fixtures
+/e2e/cypress/indegration/examples
+
 
 ### STS ###
 .apt_generated
