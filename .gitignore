@@ -6,6 +6,9 @@ build/
 e2e/node_modules/
 e2e/cypress/fixtures/
 e2e/cypress/integration/examples/
+e2e/package-lock.json
+src/main/resources/static/package-lock.json
+src/main/resources/version
 
 ### STS ###
 .apt_generated
