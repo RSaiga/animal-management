@@ -19,7 +19,7 @@ $ npm install --save-dev cypress
 ```
 
 #### GUI OPEN
-- cypressのディレクトリが構築される
+- cypressの最初のdry runを行い、Cypressのフォルダ構造を準備
 ```sh
 $ npm run cy:open 
 ```
