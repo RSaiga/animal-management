@@ -5,11 +5,15 @@
     "cy:run": "cypress run"
   },
   "devDependencies": {
-    "cypress": "^4.1.0"
+    "cypress": "^4.1.0",
+    "cypress-cucumber-preprocessor": "^1.9.1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/RSaiga/animal-management.git"
   },
-  "description": ""
+  "description": "",
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true
+  }
 }
